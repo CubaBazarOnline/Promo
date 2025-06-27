@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROMO CBO.com</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #00f7ff;
+            --secondary: #ff00f7;
+            --dark: #0a0a20;
+            --light: #e0f8ff;
+            --accent: #ff5500;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(0, 247, 255, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 247, 0.1) 0%, transparent 20%);
+        }
+        
+        .holographic-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            background: 
+                linear-gradient(135deg, var(--primary) 0%, transparent 50%),
+                linear-gradient(-135deg, var(--secondary) 0%, transparent 50%);
+            background-blend-mode: screen;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+        
+        @media (max-width: 600px) {
+            .header {
+                margin-bottom: 2rem;
+            }
+        }
+        
+        .logo {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(0, 247, 255, 0.3);
+            animation: pulse 3s infinite alternate;
+        }
+        
+        .title {
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--light), #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            box-shadow: 0 0 15px var(--primary);
+        }
+        
+        .promo-card {
+            background: rgba(10, 10, 32, 0.7);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 5vw, 3rem);
+            margin: 3rem 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 247, 255, 0.2);
+            box-shadow: 
+                0 0 30px rgba(0, 247, 255, 0.1),
+                inset 0 0 20px rgba(0, 247, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @media (max-width: 600px) {
+            .promo-card {
+                margin: 1.5rem 0;
+                padding: 1.5rem;
+            }
+        }
+        
+        .promo-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(0, 247, 255, 0.1) 50%,
+                transparent 55%
+            );
+            transform: rotate(30deg);
+            animation: shine 6s infinite;
+        }
+        
+        .highlight {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline;
+        }
+        
+        .accent-text {
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.5;
+            filter: blur(1px);
+            animation: float 15s infinite linear;
+        }
+        
+        .countdown-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+        
+        .countdown {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+            text-shadow: 0 0 10px var(--primary);
+            text-align: center;
+        }
+        
+        .countdown-timer {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(255, 85, 0, 0.1);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 15px rgba(255, 85, 0, 0.3);
+        }
+        
+        .dynamic-text {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        @media (max-width: 600px) {
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .benefit-card {
+            background: rgba(0, 247, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 247, 255, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.1);
+            background: rgba(0, 247, 255, 0.1);
+        }
+        
+        .benefit-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-card:hover::after {
+            transform: scaleX(1);
+        }
+        
+        .cta-button {
+            display: block;
+            width: clamp(250px, 80%, 300px);
+            margin: 4rem auto;
+            padding: 1.2rem;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: var(--dark);
+            text-align: center;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.3);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        @media (max-width: 600px) {
+            .cta-button {
+                margin: 2rem auto;
+                padding: 1rem;
+            }
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 247, 255, 0.4);
+        }
+        
+        .cta-button:hover::before {
+            opacity: 1;
+        }
+        
+        .anniversary-date {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 85, 0, 0.1);
+            border-radius: 50px;
+            border: 1px dashed var(--accent);
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        @keyframes pulse {
+            0% { text-shadow: 0 0 20px rgba(0, 247, 255, 0.3); }
+            100% { text-shadow: 0 0 30px rgba(255, 0, 247, 0.5); }
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(30deg) translate(-30%, -30%); }
+            100% { transform: rotate(30deg) translate(30%, 30%); }
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(50px, 50px) rotate(90deg); }
+            50% { transform: translate(100px, 0) rotate(180deg); }
+            75% { transform: translate(50px, -50px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        .glow-text {
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes glow {
+            from { text-shadow: 0 0 5px var(--light), 0 0 10px var(--light), 0 0 15px var(--primary), 0 0 20px var(--primary); }
+            to { text-shadow: 0 0 10px var(--light), 0 0 15px var(--primary), 0 0 20px var(--primary), 0 0 25px var(--secondary); }
+        }
+        
+        /* Efectos de texto dinámico */
+        .typing-text {
+            border-right: 3px solid var(--primary);
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: typing 3s steps(40) 1s 1 normal both, blink-caret 0.75s step-end infinite;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--primary) }
+        }
+        
+        .float-text {
+            animation: floatText 4s ease-in-out infinite;
+        }
+        
+        @keyframes floatText {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .pulse-text {
+            animation: pulseText 2s infinite;
+        }
+        
+        @keyframes pulseText {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+    <div class="holographic-bg"></div>
+    
+    <div class="floating-elements">
+        <div class="floating-element" style="width: 100px; height: 100px; background: var(--primary); top: 20%; left: 10%; animation-delay: 0s;"></div>
+        <div class="floating-element" style="width: 150px; height: 150px; background: var(--secondary); top: 60%; left: 80%; animation-delay: 2s;"></div>
+        <div class="floating-element" style="width: 80px; height: 80px; background: var(--primary); top: 30%; left: 70%; animation-delay: 4s;"></div>
+        <div class="floating-element" style="width: 120px; height: 120px; background: var(--secondary); top: 70%; left: 20%; animation-delay: 6s;"></div>
+    </div>
+    
+    <div class="container">
+        <header class="header animate__animated animate__fadeIn">
+            <div class="logo">PROMO CBO.com</div>
+            <h1 class="title">1er Aniversario</h1>
+            <div class="anniversary-date pulse-text">
+                ¡Celebración oficial: Finales de Noviembre!
+            </div>
+            
+            <div class="countdown-container">
+                <div class="countdown glow-text">
+                    <span class="typing-text">Oferta exclusiva del 50% de descuento</span>
+                </div>
+                <div class="countdown-timer">
+                    Válido hasta el 15 de Julio
+                </div>
+            </div>
+        </header>
+        
+        <div class="promo-card animate__animated animate__fadeInUp">
+            <p class="dynamic-text">
+                Estamos celebrando nuestro <span class="highlight">primer año</span> como plataforma oficial en redes sociales y web. 
+                Aunque nuestra celebración oficial será a <span class="accent-text">finales de noviembre</span>, queremos compartir 
+                nuestra alegría con esta <span class="highlight">oferta anticipada</span>.
+            </p>
+            
+            <p class="dynamic-text">
+                Durante este periodo especial, ofrecemos un <span class="highlight">descuento del 50%</span> en todos nuestros planes CHP 
+                para aquellos visionarios que deseen establecer su presencia digital con una página web profesional.
+            </p>
+            
+            <p class="dynamic-text">
+                <span class="accent-text">¡Atención!</span> Esta promoción es por tiempo limitado y <span class="highlight">solo estará disponible hasta el 15 de julio</span>. 
+                No pierdas esta oportunidad única de obtener servicios premium a mitad de precio.
+            </p>
+            
+            <p class="dynamic-text float-text" style="text-align: center; font-size: 1.5rem; margin-top: 2rem;">
+                ¡Tu momento para destacar en línea está aquí!
+            </p>
+        </div>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card animate__animated animate__fadeInLeft" style="animation-delay: 0.2s;">
+                <h3>Diseño Holográfico</h3>
+                <p>Interfaces modernas con efectos visuales impactantes que cautivarán a tus clientes.</p>
+            </div>
+            
+            <div class="benefit-card animate__animated animate__fadeInLeft" style="animation-delay: 0.4s;">
+                <h3>Tecnología Fluida</h3>
+                <p>Animaciones y transiciones suaves que mejoran la experiencia de usuario.</p>
+            </div>
+            
+            <div class="benefit-card animate__animated animate__fadeInLeft" style="animation-delay: 0.6s;">
+                <h3>Optimización Total</h3>
+                <p>Rendimiento garantizado en todos los dispositivos y navegadores.</p>
+            </div>
+            
+            <div class="benefit-card animate__animated animate__fadeInLeft" style="animation-delay: 0.8s;">
+                <h3>Soporte Prioritario</h3>
+                <p>Asistencia técnica especializada disponible cuando la necesites.</p>
+            </div>
+        </div>
+        
+        <button class="cta-button animate__animated animate__pulse animate__infinite">
+            OBTENER OFERTA ANTES DEL 15 JULIO
+        </button>
+    </div>
+
+    <script>
+        // Efectos dinámicos adicionales
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efecto de texto que aparece secuencialmente
+            const dynamicTexts = document.querySelectorAll('.dynamic-text');
+            dynamicTexts.forEach((text, index) => {
+                text.style.animationDelay = `${index * 0.3}s`;
+            });
+            
+            // Efecto de cursor de escritura
+            setTimeout(() => {
+                const typingElement = document.querySelector('.typing-text');
+                if (typingElement) {
+                    typingElement.style.borderRight = 'none';
+                    setTimeout(() => {
+                        typingElement.classList.add('glow-text');
+                    }, 500);
+                }
+            }, 4000);
+            
+            // Efecto hover en las tarjetas de beneficios
+            const benefitCards = document.querySelectorAll('.benefit-card');
+            benefitCards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.transform = 'translateY(-10px)';
+                    card.style.boxShadow = '0 15px 30px rgba(0, 247, 255, 0.2)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.boxShadow = '';
+                });
+            });
+            
+            // Contador regresivo
+            function updateCountdown() {
+                const now = new Date();
+                const targetDate = new Date('2023-07-15T23:59:59');
+                const timeLeft = targetDate - now;
+                
+                if (timeLeft <= 0) {
+                    document.querySelector('.countdown-timer').textContent = "¡Oferta finalizada!";
+                    return;
+                }
+                
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                
+                document.querySelector('.countdown-timer').textContent = 
+                    `Solo ${days}d ${hours}h ${minutes}m restantes`;
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 60000);
+        });
+    </script>
+</body>
+</html>
