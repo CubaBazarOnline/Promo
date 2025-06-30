@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROMO CBO.com</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <meta name="description" content="Celebra nuestro 1er aniversario con un 50% de descuento en todos nuestros planes CHP. Oferta válida hasta el 15 de julio.">
+    <title>CHP - 50% Descuento Aniversario</title>
+    
+    <!-- Favicon SVG mejorado -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+        <circle cx='50' cy='50' r='45' fill='%2300f7ff' opacity='0.8'/>
+        <circle cx='30' cy='30' r='15' fill='%23ff00f7' opacity='0.8'/>
+        <circle cx='70' cy='70' r='15' fill='%23ff5500' opacity='0.8'/>
+        <text x='50' y='60' font-size='40' text-anchor='middle' fill='%230a0a20'>🎉</text>
+    </svg>">
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0a0a20">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'">
+    
     <style>
         :root {
             --primary: #00f7ff;
@@ -13,6 +29,8 @@
             --dark: #0a0a20;
             --light: #e0f8ff;
             --accent: #ff5500;
+            --error: #ff3333;
+            --success: #33ff88;
         }
         
         body {
@@ -25,6 +43,8 @@
             background-image: 
                 radial-gradient(circle at 20% 30%, rgba(0, 247, 255, 0.1) 0%, transparent 20%),
                 radial-gradient(circle at 80% 70%, rgba(255, 0, 247, 0.1) 0%, transparent 20%);
+            min-height: 100vh;
+            line-height: 1.6;
         }
         
         .holographic-bg {
@@ -48,22 +68,10 @@
             position: relative;
         }
         
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-        }
-        
         .header {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
             position: relative;
-        }
-        
-        @media (max-width: 600px) {
-            .header {
-                margin-bottom: 2rem;
-            }
         }
         
         .logo {
@@ -104,7 +112,7 @@
             background: rgba(10, 10, 32, 0.7);
             border-radius: 20px;
             padding: clamp(1.5rem, 5vw, 3rem);
-            margin: 3rem 0;
+            margin: 2rem 0;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(0, 247, 255, 0.2);
             box-shadow: 
@@ -112,13 +120,6 @@
                 inset 0 0 20px rgba(0, 247, 255, 0.1);
             position: relative;
             overflow: hidden;
-        }
-        
-        @media (max-width: 600px) {
-            .promo-card {
-                margin: 1.5rem 0;
-                padding: 1.5rem;
-            }
         }
         
         .promo-card::before {
@@ -154,12 +155,13 @@
         }
         
         .floating-elements {
-            position: absolute;
+            position: fixed;
             width: 100%;
             height: 100%;
             top: 0;
             left: 0;
             pointer-events: none;
+            z-index: -1;
         }
         
         .floating-element {
@@ -168,6 +170,7 @@
             opacity: 0.5;
             filter: blur(1px);
             animation: float 15s infinite linear;
+            will-change: transform;
         }
         
         .countdown-container {
@@ -175,7 +178,7 @@
             flex-direction: column;
             align-items: center;
             gap: 1rem;
-            margin: 3rem 0;
+            margin: 2rem 0;
         }
         
         .countdown {
@@ -198,22 +201,15 @@
         
         .dynamic-text {
             font-size: clamp(1rem, 2.5vw, 1.2rem);
-            line-height: 1.8;
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease-out;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
         
         .benefits-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin: 3rem 0;
-        }
-        
-        @media (max-width: 600px) {
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
+            gap: 1.5rem;
+            margin: 2rem 0;
         }
         
         .benefit-card {
@@ -221,7 +217,7 @@
             border-radius: 15px;
             padding: 1.5rem;
             border: 1px solid rgba(0, 247, 255, 0.1);
-            transition: all 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
         }
@@ -252,8 +248,8 @@
         .cta-button {
             display: block;
             width: clamp(250px, 80%, 300px);
-            margin: 4rem auto;
-            padding: 1.2rem;
+            margin: 3rem auto;
+            padding: 1rem 1.5rem;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: var(--dark);
             text-align: center;
@@ -268,13 +264,6 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
-        }
-        
-        @media (max-width: 600px) {
-            .cta-button {
-                margin: 2rem auto;
-                padding: 1rem;
-            }
         }
         
         .cta-button::before {
@@ -310,6 +299,64 @@
             font-weight: 600;
         }
         
+        /* Notificaciones */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 1000;
+            max-width: 300px;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .notification.success {
+            background-color: var(--success);
+        }
+        
+        .notification.error {
+            background-color: var(--error);
+        }
+        
+        .notification.info {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+        
+        /* Accesibilidad */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border-width: 0;
+        }
+        
+        [aria-hidden="true"] {
+            display: none;
+        }
+        
+        :focus-visible {
+            outline: 3px solid var(--accent);
+            outline-offset: 3px;
+        }
+        
+        /* Animaciones */
         @keyframes pulse {
             0% { text-shadow: 0 0 20px rgba(0, 247, 255, 0.3); }
             100% { text-shadow: 0 0 30px rgba(255, 0, 247, 0.5); }
@@ -337,7 +384,6 @@
             to { text-shadow: 0 0 10px var(--light), 0 0 15px var(--primary), 0 0 20px var(--primary), 0 0 25px var(--secondary); }
         }
         
-        /* Efectos de texto dinámico */
         .typing-text {
             border-right: 3px solid var(--primary);
             white-space: nowrap;
@@ -374,20 +420,91 @@
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
+
+        /* Media Queries mejoradas */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem;
+            }
+            
+            .promo-card {
+                margin: 1.5rem 0;
+                padding: 1.5rem;
+            }
+            
+            .benefits-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+            
+            .countdown-timer {
+                padding: 0.5rem 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .cta-button {
+                margin: 2rem auto;
+                padding: 0.8rem 1.2rem;
+                width: 90%;
+            }
+            
+            .notification {
+                max-width: calc(100% - 40px);
+                right: 20px;
+                left: 20px;
+                bottom: 10px;
+            }
+            
+            .countdown-timer > div {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .countdown-timer > div > div {
+                min-width: 70px;
+            }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+        
+        /* Estilo para modo oscuro/noche */
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #050510;
+            }
+            
+            .promo-card {
+                background: rgba(5, 5, 16, 0.8);
+            }
+        }
     </style>
 </head>
 <body>
-    <div class="holographic-bg"></div>
+    <div class="holographic-bg" aria-hidden="true"></div>
     
-    <div class="floating-elements">
+    <div class="floating-elements" aria-hidden="true">
         <div class="floating-element" style="width: 100px; height: 100px; background: var(--primary); top: 20%; left: 10%; animation-delay: 0s;"></div>
         <div class="floating-element" style="width: 150px; height: 150px; background: var(--secondary); top: 60%; left: 80%; animation-delay: 2s;"></div>
         <div class="floating-element" style="width: 80px; height: 80px; background: var(--primary); top: 30%; left: 70%; animation-delay: 4s;"></div>
         <div class="floating-element" style="width: 120px; height: 120px; background: var(--secondary); top: 70%; left: 20%; animation-delay: 6s;"></div>
     </div>
     
-    <div class="container">
-        <header class="header animate__animated animate__fadeIn">
+    <div class="container" id="main-content">
+        <header class="header">
             <div class="logo">PROMO CBO.com</div>
             <h1 class="title">1er Aniversario</h1>
             <div class="anniversary-date pulse-text">
@@ -396,119 +513,360 @@
             
             <div class="countdown-container">
                 <div class="countdown glow-text">
-                    <span class="typing-text">Oferta exclusiva del 50% de descuento</span>
+                    <span class="typing-text">Oferta única del 50% OFF</span>
                 </div>
-                <div class="countdown-timer">
-                    Válido hasta el 15 de Julio
+                <div class="countdown-timer" id="countdown-display">
+                    Cargando tiempo restante...
                 </div>
             </div>
         </header>
         
-        <div class="promo-card animate__animated animate__fadeInUp">
-            <p class="dynamic-text">
-                Estamos celebrando nuestro <span class="highlight">primer año</span> como plataforma oficial en redes sociales y web. 
-                Aunque nuestra celebración oficial será a <span class="accent-text">finales de noviembre</span>, queremos compartir 
-                nuestra alegría con esta <span class="highlight">oferta anticipada</span>.
-            </p>
+        <main>
+            <section class="promo-card">
+                <p class="dynamic-text">
+                    Pronto celebraremos nuestro <span class="highlight">primer año</span> como plataforma oficial en redes sociales y web. 
+                    Aunque nuestra celebración oficial será a <span class="accent-text">finales de noviembre</span>, queremos compartir 
+                    nuestra alegría con esta <span class="highlight">oferta anticipada</span>.
+                </p>
+                
+                <p class="dynamic-text">
+                    Durante este periodo especial, ofrecemos un <span class="highlight">descuento del 50%</span> en todos nuestros planes CHP 
+                    para aquellos usuarios que deseen establecer su presencia digital con una página web profesional.
+                </p>
+                
+                <p class="dynamic-text">
+                    <span class="accent-text">¡Atención!</span> Esta promoción es por tiempo limitado y <span class="highlight">solo estará disponible hasta el 15 de julio</span>. 
+                    No pierdas esta oportunidad única de obtener servicios premium a mitad de precio.
+                </p>
+                
+                <p class="dynamic-text float-text" style="text-align: center; font-size: 1.5rem; margin-top: 2rem;">
+                    ¡Tu momento para destacar en línea está aquí!
+                </p>
+            </section>
             
-            <p class="dynamic-text">
-                Durante este periodo especial, ofrecemos un <span class="highlight">descuento del 50%</span> en todos nuestros planes CHP 
-                para aquellos visionarios que deseen establecer su presencia digital con una página web profesional.
-            </p>
-            
-            <p class="dynamic-text">
-                <span class="accent-text">¡Atención!</span> Esta promoción es por tiempo limitado y <span class="highlight">solo estará disponible hasta el 15 de julio</span>. 
-                No pierdas esta oportunidad única de obtener servicios premium a mitad de precio.
-            </p>
-            
-            <p class="dynamic-text float-text" style="text-align: center; font-size: 1.5rem; margin-top: 2rem;">
-                ¡Tu momento para destacar en línea está aquí!
-            </p>
-        </div>
+            <section class="benefits-grid">
+                <article class="benefit-card">
+                    <h3>Diseño Personalizado</h3>
+                    <p>Interfaces modernas con efectos visuales impactantes que cautivarán a tus clientes.</p>
+                </article>
+                
+                <article class="benefit-card">
+                    <h3>Tecnología Fluida</h3>
+                    <p>Animaciones y transiciones suaves que mejoran la experiencia de usuario.</p>
+                </article>
+                
+                <article class="benefit-card">
+                    <h3>Optimización Total</h3>
+                    <p>Rendimiento garantizado en todos los dispositivos y navegadores.</p>
+                </article>
+                
+                <article class="benefit-card">
+                    <h3>Soporte Prioritario</h3>
+                    <p>Asistencia técnica especializada disponible cuando la necesites.</p>
+                </article>
+            </section>
+        </main>
         
-        <div class="benefits-grid">
-            <div class="benefit-card animate__animated animate__fadeInLeft" style="animation-delay: 0.2s;">
-                <h3>Diseño Holográfico</h3>
-                <p>Interfaces modernas con efectos visuales impactantes que cautivarán a tus clientes.</p>
-            </div>
-            
-            <div class="benefit-card animate__animated animate__fadeInLeft" style="animation-delay: 0.4s;">
-                <h3>Tecnología Fluida</h3>
-                <p>Animaciones y transiciones suaves que mejoran la experiencia de usuario.</p>
-            </div>
-            
-            <div class="benefit-card animate__animated animate__fadeInLeft" style="animation-delay: 0.6s;">
-                <h3>Optimización Total</h3>
-                <p>Rendimiento garantizado en todos los dispositivos y navegadores.</p>
-            </div>
-            
-            <div class="benefit-card animate__animated animate__fadeInLeft" style="animation-delay: 0.8s;">
-                <h3>Soporte Prioritario</h3>
-                <p>Asistencia técnica especializada disponible cuando la necesites.</p>
-            </div>
-        </div>
+        <button id="cta-button" class="cta-button" aria-label="Obtener oferta con 50% de descuento">
+            OBTENER OFERTA ‼️YA‼️
+        </button>
         
-        <button class="cta-button animate__animated animate__pulse animate__infinite">
-            OBTENER OFERTA ANTES DEL 15 JULIO
+        <div id="permission-requests" style="margin-top: 2rem; text-align: center;">
+            <button id="enable-notifications" style="background: none; border: none; color: var(--primary); text-decoration: underline; cursor: pointer; font-size: 0.9rem;">
+                Activar notificaciones de la oferta
+            </button>
+        </div>
+    </div>
+
+    <div id="expired-message" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 10, 32, 0.95); z-index: 9999; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem;">
+        <h1 style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem;">¡La oferta ha finalizado!</h1>
+        <p style="font-size: 1.5rem; margin-bottom: 2rem;">Lamentamos informar que esta promoción especial ha concluido.</p>
+        <p style="font-size: 1.2rem;">Gracias por tu interés. ¡Esperamos verte en nuestras próximas promociones!</p>
+        <button id="reload-button" style="margin-top: 2rem; padding: 0.8rem 1.5rem; background: var(--accent); color: white; border: none; border-radius: 50px; font-weight: 600; cursor: pointer;">
+            Volver a cargar
         </button>
     </div>
 
+    <div id="notification" class="notification" aria-live="polite"></div>
+
     <script>
-        // Efectos dinámicos adicionales
-        document.addEventListener('DOMContentLoaded', function() {
-            // Efecto de texto que aparece secuencialmente
-            const dynamicTexts = document.querySelectorAll('.dynamic-text');
-            dynamicTexts.forEach((text, index) => {
-                text.style.animationDelay = `${index * 0.3}s`;
-            });
-            
-            // Efecto de cursor de escritura
-            setTimeout(() => {
-                const typingElement = document.querySelector('.typing-text');
-                if (typingElement) {
-                    typingElement.style.borderRight = 'none';
-                    setTimeout(() => {
-                        typingElement.classList.add('glow-text');
-                    }, 500);
-                }
-            }, 4000);
-            
-            // Efecto hover en las tarjetas de beneficios
-            const benefitCards = document.querySelectorAll('.benefit-card');
-            benefitCards.forEach(card => {
-                card.addEventListener('mouseenter', () => {
-                    card.style.transform = 'translateY(-10px)';
-                    card.style.boxShadow = '0 15px 30px rgba(0, 247, 255, 0.2)';
+        // Configuración del Service Worker para PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').then(registration => {
+                    console.log('ServiceWorker registrado con éxito:', registration.scope);
+                }).catch(error => {
+                    console.log('Error al registrar ServiceWorker:', error);
                 });
+            });
+        }
+
+        // Objeto para manejar notificaciones
+        const NotificationManager = {
+            show: function(message, type = 'info', duration = 5000) {
+                const notification = document.getElementById('notification');
+                notification.textContent = message;
+                notification.className = `notification ${type}`;
+                notification.classList.add('show');
                 
-                card.addEventListener('mouseleave', () => {
-                    card.style.transform = '';
-                    card.style.boxShadow = '';
-                });
-            });
+                // Accesibilidad
+                const notificationText = document.createElement('div');
+                notificationText.className = 'sr-only';
+                notificationText.textContent = `Notificación: ${message}`;
+                document.body.appendChild(notificationText);
+                
+                setTimeout(() => {
+                    notification.classList.remove('show');
+                    notificationText.remove();
+                }, duration);
+            }
+        };
+
+        // Clase para manejar el contador regresivo
+        class Countdown {
+            constructor(deadline, displayElement) {
+                this.deadline = deadline;
+                this.displayElement = displayElement;
+                this.interval = null;
+                this.notificationShown = false;
+            }
             
-            // Contador regresivo
-            function updateCountdown() {
+            start() {
+                this.update();
+                this.interval = setInterval(() => this.update(), 1000);
+            }
+            
+            stop() {
+                clearInterval(this.interval);
+            }
+            
+            update() {
                 const now = new Date();
-                const targetDate = new Date('2023-07-15T23:59:59');
-                const timeLeft = targetDate - now;
+                const timeLeft = this.deadline - now;
                 
                 if (timeLeft <= 0) {
-                    document.querySelector('.countdown-timer').textContent = "¡Oferta finalizada!";
+                    this.stop();
+                    this.displayExpired();
                     return;
                 }
                 
                 const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
                 
-                document.querySelector('.countdown-timer').textContent = 
-                    `Solo ${days}d ${hours}h ${minutes}m restantes`;
+                // Mostrar el contador con formato accesible
+                this.displayElement.innerHTML = `
+                    <div role="timer" aria-live="polite">
+                        <div style="display: flex; gap: 0.5rem; justify-content: center;">
+                            <div style="background: rgba(255, 85, 0, 0.2); padding: 0.5rem; border-radius: 5px; min-width: 50px;">
+                                <div style="font-size: 0.8rem;">DÍAS</div>
+                                <div aria-label="${days} días">${days}</div>
+                            </div>
+                            <div style="background: rgba(255, 85, 0, 0.2); padding: 0.5rem; border-radius: 5px; min-width: 50px;">
+                                <div style="font-size: 0.8rem;">HORAS</div>
+                                <div aria-label="${hours} horas">${hours}</div>
+                            </div>
+                            <div style="background: rgba(255, 85, 0, 0.2); padding: 0.5rem; border-radius: 5px; min-width: 50px;">
+                                <div style="font-size: 0.8rem;">MIN</div>
+                                <div aria-label="${minutes} minutos">${minutes}</div>
+                            </div>
+                            <div style="background: rgba(255, 85, 0, 0.2); padding: 0.5rem; border-radius: 5px; min-width: 50px;">
+                                <div style="font-size: 0.8rem;">SEG</div>
+                                <div aria-label="${seconds} segundos">${seconds}</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                // Notificación cuando quedan 24 horas o menos
+                if (timeLeft <= 86400000 && !this.notificationShown) {
+                    this.notificationShown = true;
+                    NotificationManager.show('¡Solo queda 1 día para aprovechar la oferta!', 'error');
+                    
+                    // Mostrar notificación del navegador si está permitido
+                    if (Notification.permission === 'granted') {
+                        new Notification('¡Último día de oferta!', {
+                            body: 'Solo quedan 24 horas para aprovechar el 50% de descuento',
+                            icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ff5500"/><text x="50" y="60" font-size="40" text-anchor="middle" fill="%23ffffff">!</text></svg>'
+                        });
+                    }
+                }
             }
             
-            updateCountdown();
-            setInterval(updateCountdown, 60000);
+            displayExpired() {
+                const mainContent = document.getElementById('main-content');
+                const expiredMessage = document.getElementById('expired-message');
+                
+                mainContent.style.display = 'none';
+                expiredMessage.style.display = 'flex';
+                
+                const ctaButton = document.getElementById('cta-button');
+                if (ctaButton) {
+                    ctaButton.disabled = true;
+                    ctaButton.style.opacity = '0.5';
+                    ctaButton.style.pointerEvents = 'none';
+                    ctaButton.textContent = 'OFERTA FINALIZADA';
+                }
+                
+                NotificationManager.show('La oferta ha finalizado', 'error');
+                
+                // Mostrar notificación del navegador si está permitido
+                if (Notification.permission === 'granted') {
+                    new Notification('Oferta finalizada', {
+                        body: 'La promoción del 50% de descuento ha concluido',
+                        icon: 'data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="%23ff3333"/><text x="50" y="60" font-size="40" text-anchor="middle" fill="%23ffffff">X</text></svg>'
+                    });
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Efecto de cursor de escritura
+            const typingElement = document.querySelector('.typing-text');
+            if (typingElement) {
+                setTimeout(() => {
+                    typingElement.style.borderRight = 'none';
+                    typingElement.classList.add('glow-text');
+                }, 4000);
+            }
+            
+            // Fecha límite: 15 de julio a las 12:00 PM
+            const deadline = new Date('2023-07-15T12:00:00');
+            const countdownDisplay = document.getElementById('countdown-display');
+            const countdown = new Countdown(deadline, countdownDisplay);
+            
+            // Verificar el estado inmediatamente al cargar
+            const now = new Date();
+            if (now >= deadline) {
+                countdown.displayExpired();
+            } else {
+                countdown.start();
+            }
+            
+            // Botón de recarga
+            const reloadButton = document.getElementById('reload-button');
+            if (reloadButton) {
+                reloadButton.addEventListener('click', () => {
+                    window.location.reload();
+                });
+            }
+            
+            // Botón CTA
+            const ctaButton = document.getElementById('cta-button');
+            if (ctaButton) {
+                ctaButton.addEventListener('click', () => {
+                    // Verificar si la oferta aún está activa
+                    if (new Date() >= deadline) {
+                        NotificationManager.show('La oferta ha finalizado', 'error');
+                        return;
+                    }
+                    
+                    // Solicitar permisos antes de redirigir
+                    this.requestNotificationPermission().then(() => {
+                        window.location.href = 'https://cubabazaronline.github.io/CHP/';
+                    });
+                });
+            }
+            
+            // Botón para activar notificaciones
+            const enableNotifications = document.getElementById('enable-notifications');
+            if (enableNotifications) {
+                enableNotifications.addEventListener('click', () => {
+                    this.requestNotificationPermission();
+                });
+            }
+            
+            // Verificar geolocalización si el usuario lo permite
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        console.log('Ubicación del usuario:', position.coords);
+                        // Podríamos usar esta información para personalizar la experiencia
+                    },
+                    (error) => {
+                        console.log('Error al obtener ubicación:', error.message);
+                    },
+                    { enableHighAccuracy: true }
+                );
+            }
+            
+            // Solicitar permiso para notificaciones push
+            this.requestNotificationPermission();
+            
+            // Verificar conexión
+            window.addEventListener('online', () => {
+                NotificationManager.show('Conectado a internet', 'success', 3000);
+            });
+            
+            window.addEventListener('offline', () => {
+                NotificationManager.show('Sin conexión a internet', 'error');
+            });
         });
+        
+        // Función para solicitar permiso de notificaciones
+        function requestNotificationPermission() {
+            return new Promise((resolve) => {
+                if ('Notification' in window) {
+                    if (Notification.permission === 'granted') {
+                        resolve(true);
+                    } else if (Notification.permission !== 'denied') {
+                        Notification.requestPermission().then(permission => {
+                            if (permission === 'granted') {
+                                NotificationManager.show('Notificaciones activadas', 'success');
+                                resolve(true);
+                            } else {
+                                resolve(false);
+                            }
+                        });
+                    } else {
+                        resolve(false);
+                    }
+                } else {
+                    resolve(false);
+                }
+            });
+        }
+        
+        // Solicitar otros permisos del navegador
+        function requestAdditionalPermissions() {
+            // Permiso para geolocalización
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(
+                    () => console.log('Permiso de geolocalización concedido'),
+                    () => console.log('Permiso de geolocalización denegado')
+                );
+            }
+            
+            // Permiso para cámara (útil si en algún momento se quiere añadir funcionalidad de escanear códigos QR)
+            if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then(() => console.log('Permiso de cámara concedido'))
+                    .catch(() => console.log('Permiso de cámara denegado'));
+            }
+            
+            // Permiso para micrófono (potencial uso futuro)
+            if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+                navigator.mediaDevices.getUserMedia({ audio: true })
+                    .then(() => console.log('Permiso de micrófono concedido'))
+                    .catch(() => console.log('Permiso de micrófono denegado'));
+            }
+            
+            // Permiso para almacenamiento persistente
+            if ('storage' in navigator && 'persist' in navigator.storage) {
+                navigator.storage.persist()
+                    .then(granted => {
+                        if (granted) {
+                            console.log('Persistencia de almacenamiento concedida');
+                        } else {
+                            console.log('Persistencia de almacenamiento denegada');
+                        }
+                    });
+            }
+        }
+        
+        // Llamar a la función después de un tiempo para no abrumar al usuario
+        setTimeout(requestAdditionalPermissions, 10000);
     </script>
 </body>
 </html>
