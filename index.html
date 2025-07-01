@@ -298,6 +298,17 @@
             color: var(--accent);
             font-weight: 600;
         }
+
+        .offer-start {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 247, 255, 0.1);
+            border-radius: 50px;
+            border: 1px dashed var(--primary);
+            color: var(--primary);
+            font-weight: 600;
+        }
         
         /* Notificaciones */
         .notification {
@@ -421,6 +432,35 @@
             100% { transform: scale(1); }
         }
 
+        /* Estilo para mensaje de oferta expirada */
+        .expired-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(10, 10, 32, 0.95);
+            z-index: 9999;
+            color: white;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .expired-message h1 {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+
+        .expired-message p {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
         /* Media Queries mejoradas */
         @media (max-width: 768px) {
             .container {
@@ -468,6 +508,14 @@
             .countdown-timer > div > div {
                 min-width: 70px;
             }
+
+            .expired-message h1 {
+                font-size: 2rem;
+            }
+
+            .expired-message p {
+                font-size: 1rem;
+            }
         }
         
         @media (prefers-reduced-motion: reduce) {
@@ -507,7 +555,10 @@
         <header class="header">
             <div class="logo">PROMO CBO.com</div>
             <h1 class="title">1er Aniversario</h1>
-            <div class="anniversary-date pulse-text">
+            <div class="offer-start pulse-text">
+                ¡Oferta activa desde hoy!
+            </div>
+            <div class="anniversary-date">
                 ¡Celebración oficial: Finales de Noviembre!
             </div>
             
@@ -578,10 +629,10 @@
         </div>
     </div>
 
-    <div id="expired-message" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(10, 10, 32, 0.95); z-index: 9999; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem;">
-        <h1 style="font-size: 2.5rem; color: var(--accent); margin-bottom: 1.5rem;">¡La oferta ha finalizado!</h1>
-        <p style="font-size: 1.5rem; margin-bottom: 2rem;">Lamentamos informar que esta promoción especial ha concluido.</p>
-        <p style="font-size: 1.2rem;">Gracias por tu interés. ¡Esperamos verte en nuestras próximas promociones!</p>
+    <div id="expired-message" class="expired-message">
+        <h1>¡La oferta ha finalizado!</h1>
+        <p>Lamentamos informar que esta promoción especial ha concluido.</p>
+        <p>Gracias por tu interés. ¡Esperamos verte en nuestras próximas promociones!</p>
         <button id="reload-button" style="margin-top: 2rem; padding: 0.8rem 1.5rem; background: var(--accent); color: white; border: none; border-radius: 50px; font-weight: 600; cursor: pointer;">
             Volver a cargar
         </button>
@@ -731,8 +782,9 @@
                 }, 4000);
             }
             
-            // Fecha límite: 15 de julio a las 12:00 PM
-            const deadline = new Date('2023-07-15T12:00:00');
+            // Fecha límite: 15 de julio del año actual a las 12:00 PM
+            const currentYear = new Date().getFullYear();
+            const deadline = new Date(`${currentYear}-07-15T12:00:00`);
             const countdownDisplay = document.getElementById('countdown-display');
             const countdown = new Countdown(deadline, countdownDisplay);
             
@@ -742,6 +794,14 @@
                 countdown.displayExpired();
             } else {
                 countdown.start();
+                
+                // Mostrar notificación de inicio de oferta solo si es el primer día
+                const offerStartTime = new Date(now);
+                offerStartTime.setHours(0, 0, 0, 0);
+                
+                if (now - offerStartTime < 86400000) { // Menos de 24 horas desde el inicio del día
+                    NotificationManager.show('¡La oferta del 50% de descuento ya está activa!', 'success');
+                }
             }
             
             // Botón de recarga
@@ -763,7 +823,7 @@
                     }
                     
                     // Solicitar permisos antes de redirigir
-                    this.requestNotificationPermission().then(() => {
+                    requestNotificationPermission().then(() => {
                         window.location.href = 'https://cubabazaronline.github.io/CHP/';
                     });
                 });
@@ -773,7 +833,7 @@
             const enableNotifications = document.getElementById('enable-notifications');
             if (enableNotifications) {
                 enableNotifications.addEventListener('click', () => {
-                    this.requestNotificationPermission();
+                    requestNotificationPermission();
                 });
             }
             
@@ -792,7 +852,7 @@
             }
             
             // Solicitar permiso para notificaciones push
-            this.requestNotificationPermission();
+            requestNotificationPermission();
             
             // Verificar conexión
             window.addEventListener('online', () => {
