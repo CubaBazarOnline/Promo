@@ -3,626 +3,585 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Se celebra nuestro 1er aniversario de la empresa, y ofertamos un 50% de descuento en todos nuestros planes CHP. Oferta válida hasta el 15 de julio.">
-    <title>Aniversario De CBO.com</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%2300f7ff'/><circle cx='30' cy='30' r='15' fill='%23ff00f7'/><circle cx='70' cy='70' r='15' fill='%23ff5500'/><text x='50' y='60' font-size='40' text-anchor='middle' fill='%230a0a20'>🎉</text></svg>">
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0a0a20">
+    <meta name="description" content="Promoción exclusiva de Tcubita Pay: ¡Los primeros 50 usuarios que envíen sus productos a la plataforma no pagan comisión!">
+    <title>Promo Tcubita Pay - Envío Gratis</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%23005296'/><circle cx='50' cy='50' r='30' fill='%23ffffff'/><text x='50' y='65' font-size='50' text-anchor='middle' fill='%23005296'>₱</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
     <style>
         :root {
-            --primary: #00f7ff;
-            --secondary: #ff00f7;
+            --primary: #00f3ff;
+            --secondary: #0066ff;
+            --accent: #ff00aa;
             --dark: #0a0a20;
-            --light: #e0f8ff;
-            --accent: #ff5500;
-            --error: #ff3333;
-            --success: #33ff88;
-            --transition-time: 0.3s;
+            --light: rgba(255, 255, 255, 0.9);
+            --whatsapp: #25D366;
+            --success: #00ff88;
+            --glow: 0 0 10px var(--primary);
+            --hologram-bg: linear-gradient(135deg, rgba(0, 99, 255, 0.1) 0%, rgba(0, 242, 255, 0.1) 50%, rgba(170, 0, 255, 0.1) 100%);
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
         
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
+            font-family: 'Roboto', sans-serif;
             background-color: var(--dark);
             color: var(--light);
             line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 99, 255, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 242, 255, 0.05) 0%, transparent 20%);
+            position: relative;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--hologram-bg);
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .scanline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, 
+                transparent 0%, 
+                rgba(0, 243, 255, 0.03) 50%, 
+                transparent 100%);
+            background-size: 100% 8px;
+            pointer-events: none;
+            z-index: -1;
+            animation: scan 8s linear infinite;
+            will-change: transform;
+        }
+        
+        @keyframes scan {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100%); }
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 1.5rem;
             flex: 1;
+            position: relative;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            box-shadow: var(--glow);
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: -1;
+            animation: pulse 4s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.2; }
+            100% { opacity: 0.5; }
         }
         
         .header {
             text-align: center;
             margin-bottom: 2rem;
+            position: relative;
         }
         
         .logo {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin-bottom: 1rem;
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+            text-shadow: var(--glow);
+            letter-spacing: 2px;
         }
         
         .title {
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--light), #ffffff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .promo-card {
-            background: rgba(10, 10, 32, 0.7);
-            border-radius: 20px;
-            padding: clamp(1.5rem, 5vw, 3rem);
-            margin: 2rem 0;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 247, 255, 0.2);
-            transition: transform var(--transition-time) ease, box-shadow var(--transition-time) ease;
-        }
-        
-        .promo-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 247, 255, 0.1);
-        }
-        
-        .highlight {
-            font-weight: 600;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .accent-text {
-            color: var(--accent);
-            font-weight: 700;
-        }
-        
-        .countdown-container {
-            display: flex;
-            justify-content: center;
-            margin: 2rem 0;
-        }
-        
-        .countdown-timer {
+            font-family: 'Orbitron', sans-serif;
             font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 700;
-            color: var(--accent);
-            background: rgba(255, 85, 0, 0.1);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            border: 1px solid var(--accent);
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            justify-content: center;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 5px var(--primary);
         }
         
-        .countdown-segment {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-width: 60px;
+        .highlight-box {
+            background: rgba(10, 10, 40, 0.7);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 0 20px rgba(0, 99, 255, 0.3);
+            border: 1px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
         }
         
-        .countdown-value {
-            font-size: 1.5em;
-            font-weight: 800;
+        .highlight-box::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(0, 243, 255, 0.1) 50%,
+                transparent 55%
+            );
+            animation: shine 6s infinite;
+            pointer-events: none;
         }
         
-        .countdown-label {
-            font-size: 0.6em;
-            text-transform: uppercase;
-            opacity: 0.8;
+        @keyframes shine {
+            0% { transform: translate(-30%, -30%) rotate(0deg); }
+            100% { transform: translate(30%, 30%) rotate(360deg); }
         }
         
-        .benefits-grid {
+        .requirements {
+            background: rgba(0, 40, 80, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border: 1px solid var(--secondary);
+        }
+        
+        .requirements-list {
+            list-style-position: inside;
+        }
+        
+        .requirements-list li {
+            margin: 0.8rem 0;
+            color: var(--light);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        
+        .requirements-list li::before {
+            content: '✓';
+            color: var(--success);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .benefits {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin: 2rem 0;
         }
         
-        .benefit-card {
-            background: rgba(0, 247, 255, 0.05);
-            border-radius: 15px;
+        .benefit-item {
+            background: rgba(20, 20, 60, 0.5);
             padding: 1.5rem;
-            border: 1px solid rgba(0, 247, 255, 0.1);
-            transition: all var(--transition-time) ease;
-        }
-        
-        .benefit-card:hover {
-            transform: translateY(-5px);
-            background: rgba(0, 247, 255, 0.1);
-            box-shadow: 0 5px 15px rgba(0, 247, 255, 0.1);
-        }
-        
-        .cta-container {
-            display: flex;
-            justify-content: center;
-            margin: 3rem 0;
-        }
-        
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: clamp(250px, 80%, 350px);
-            padding: 1rem 1.5rem;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: var(--dark);
-            text-align: center;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            border: none;
-            cursor: pointer;
-            transition: all var(--transition-time) ease;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 99, 255, 0.3);
+            border: 1px solid var(--secondary);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 247, 255, 0.3);
         }
         
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.03);
-            box-shadow: 0 8px 25px rgba(0, 247, 255, 0.4);
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 25px rgba(0, 99, 255, 0.5);
         }
         
-        .cta-button:active {
-            transform: translateY(1px);
-        }
-        
-        .cta-button::after {
+        .benefit-item::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, var(--secondary), var(--primary));
-            opacity: 0;
-            transition: opacity var(--transition-time) ease;
+            background: linear-gradient(
+                135deg,
+                transparent 0%,
+                rgba(0, 243, 255, 0.05) 50%,
+                transparent 100%
+            );
+            pointer-events: none;
         }
         
-        .cta-button:hover::after {
-            opacity: 1;
-        }
-        
-        .cta-button span {
-            position: relative;
-            z-index: 1;
+        .benefit-item h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            font-family: 'Orbitron', sans-serif;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
         }
         
-        .cta-button .icon {
-            font-size: 1.2em;
-            transition: transform var(--transition-time) ease;
+        .whatsapp-section {
+            text-align: center;
+            margin: 3rem 0;
+            position: relative;
         }
         
-        .cta-button:hover .icon {
-            transform: translateX(5px);
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            background-color: var(--whatsapp);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            margin: 1.5rem 0;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(37, 211, 102, 0.5);
+            position: relative;
+            overflow: hidden;
+            border: none;
+            font-size: clamp(1rem, 3vw, 1.1rem);
+            cursor: pointer;
+            min-width: 220px;
+        }
+        
+        .whatsapp-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(37, 211, 102, 0.8);
+        }
+        
+        .whatsapp-button:active {
+            transform: scale(0.98);
+        }
+        
+        .whatsapp-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to bottom right,
+                transparent 45%,
+                rgba(255, 255, 255, 0.2) 50%,
+                transparent 55%
+            );
+            animation: shine 4s infinite;
+            pointer-events: none;
+        }
+        
+        .whatsapp-button i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .phone-number {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
+            margin: 1rem 0;
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .urgent-badge {
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            font-weight: 700;
+            display: inline-block;
+            margin: 0.5rem 0 1.5rem;
+            box-shadow: 0 0 10px var(--accent);
+            animation: pulseBadge 2s infinite;
+        }
+        
+        @keyframes pulseBadge {
+            0% { transform: scale(1); box-shadow: 0 0 10px var(--accent); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px var(--accent); }
+            100% { transform: scale(1); box-shadow: 0 0 10px var(--accent); }
         }
         
         .expired-message {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(10, 10, 32, 0.95);
-            z-index: 9999;
-            color: white;
             display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-        }
-        
-        /* Previsualización */
-        #preview-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background: rgba(170, 0, 0, 0.7);
             color: white;
+            padding: 2rem;
             text-align: center;
-            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 20px rgba(255, 0, 85, 0.5);
         }
         
-        #preview-content {
-            max-width: 600px;
-            background: var(--dark);
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid var(--primary);
-        }
-        
-        #enter-site {
-            margin-top: 2rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--accent);
-            color: white;
-            border: none;
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: var(--dark);
             border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
+            text-decoration: none;
+            font-weight: 700;
+            margin-top: 1.5rem;
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            box-shadow: 0 0 15px var(--primary);
+            min-width: 220px;
         }
         
-        #enter-site:hover {
-            background: #ff6a00;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 85, 0, 0.3);
+        .cta-button:hover {
+            background: var(--success);
+            box-shadow: 0 0 25px var(--success);
         }
         
+        .cta-button:active {
+            transform: scale(0.98);
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 40, 80, 0.9);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transform: translateX(150%);
+            transition: transform 0.3s ease-out;
+            max-width: 300px;
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .notification-close {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        /* Optimizaciones para móviles */
         @media (max-width: 768px) {
             .container {
-                padding: 1.5rem;
+                padding: 1rem;
             }
             
-            .benefits-grid {
+            .highlight-box, .requirements {
+                padding: 1.2rem;
+                margin: 1.5rem 0;
+            }
+            
+            .benefits {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
             
-            .countdown-timer {
-                gap: 0.5rem;
-                padding: 0.5rem;
+            .whatsapp-button, .cta-button {
+                width: 100%;
+                padding: 0.9rem;
             }
             
-            .countdown-segment {
-                min-width: 50px;
+            .notification {
+                max-width: calc(100% - 40px);
+                bottom: 10px;
+                right: 10px;
             }
         }
         
         @media (max-width: 480px) {
-            .countdown-timer {
-                font-size: 1.2rem;
+            .logo {
+                font-size: 2.2rem;
             }
             
-            .countdown-value {
-                font-size: 1.2em;
+            .title {
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
             }
             
-            .countdown-label {
-                font-size: 0.5em;
+            .highlight-box p {
+                font-size: 0.95rem;
             }
             
-            .promo-card, .benefit-card {
-                padding: 1rem;
+            .requirements-list li {
+                font-size: 0.9rem;
+                padding-left: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Previsualización -->
-    <div id="preview-overlay">
-        <div id="preview-content">
-            <h2>¡INFORMACION!</h2>
-            <p>Estás a punto de acceder a nuestra promoción exclusiva de CubaBazarOnline.</p>
-            <p>Esta oferta es válida solo hasta el 15 de julio.</p>
-            <p>Al continuar, el sitio puede solicitar permisos para:</p>
-            <ul style="text-align: left; margin: 1rem 0;">
-                <li>Notificaciones (para recordatorios de la oferta)</li>
-                <li>Ubicación (para ofertas personalizadas)</li>
-                <li>Almacenamiento (para mejor rendimiento)</li>
-            </ul>
-            <button id="enter-site">Acceder</button>
+    <div class="scanline"></div>
+    
+    <div class="container">
+        <header class="header">
+            <div class="logo">Tcubita Pay</div>
+            <h1 class="title">PROMOCIÓN DE HOY</h1>
+        </header>
+        
+        <main>
+            <section class="highlight-box">
+                <div class="urgent-badge">¡OFERTA POR TIEMPO LIMITADO!</div>
+                <p>¡Los primeros 50 emprendedores que envíen sus productos a <strong>Tcubita Pay</strong> obtendrán:</p>
+                <p style="font-size: clamp(1.1rem, 3vw, 1.3rem); margin: 1rem 0; color: var(--primary);">¡ENVÍO TOTALMENTE GRATIS!</p>
+                
+                <div class="requirements">
+                    <h3>REQUISITOS DEL SISTEMA:</h3>
+                    <ul class="requirements-list">
+                        <li>Nombre claro del producto</li>
+                        <li>Descripción detallada</li>
+                        <li>Enlace de pago (Transfermóvil/Pago en Línea)</li>
+                        <li>Imagen de calidad (mínimo 800x600px)</li>
+                    </ul>
+                </div>
+                
+                <p><strong style="color: var(--accent);">¡ATENCIÓN!</strong> Los cupos se asignan por orden de llegada y se están agotando rápidamente.</p>
+            </section>
+            
+            <section class="benefits">
+                <div class="benefit-item">
+                    <h3><i class="fas fa-money-bill-wave"></i>SIN COMISIONES</h3>
+                    <p>Ahorra el 100% del costo habitual en tu primer envío a la plataforma.</p>
+                </div>
+                <div class="benefit-item">
+                    <h3><i class="fas fa-eye"></i> VISIBILIDAD</h3>
+                    <p>Tus productos aparecerán destacados durante 30 días.</p>
+                </div>
+                <div class="benefit-item">
+                    <h3><i class="fas fa-headset"></i> SOPORTE 24/7</h3>
+                    <p>Asistencia prioritaria mediante nuestro sistema.</p>
+                </div>
+            </section>
+            
+            <section class="whatsapp-section">
+                <h2>¿LISTO PARA PARTICIPAR?</h2>
+                <p>Conecta con nuestro sistema central mediante WhatsApp:</p>
+                <div class="phone-number">+53 50369270</div>
+                <p>Horario de conexión: Lunes a Viernes, 9:00 AM - 5:00 PM</p>
+                
+                <button id="whatsapp-btn" class="whatsapp-button">
+                    <i class="fab fa-whatsapp"></i> INICIAR CONEXIÓN
+                </button>
+                
+                <p><small>Ten preparados los datos de tu producto para una transmisión rápida.</small></p>
+            </section>
+        </main>
+        
+        <div id="expired-message" class="expired-message">
+            <h2>¡PROMOCIÓN TERMINADA!</h2>
+            <p>Los 50 cupos gratuitos han sido asignados.</p>
+            <p>Puedes seguir enviando productos con nuestras tarifas regulares.</p>
+            <button id="tarifas-btn" class="cta-button">VER TARIFAS ACTUALES</button>
         </div>
     </div>
 
-    <!-- Contenido principal (oculto inicialmente) -->
-    <div id="main-content" style="display: none;">
-        <div class="container">
-            <header class="header">
-                <div class="logo">CBO.com</div>
-                <h1 class="title">1er Aniversario</h1>
-                <div class="countdown-container">
-                    <div class="countdown-timer" id="countdown-display">
-                        <div class="countdown-segment">
-                            <div class="countdown-value" id="days">00</div>
-                            <div class="countdown-label">DÍAS</div>
-                        </div>
-                        <div class="countdown-segment">
-                            <div class="countdown-value" id="hours">00</div>
-                            <div class="countdown-label">HORAS</div>
-                        </div>
-                        <div class="countdown-segment">
-                            <div class="countdown-value" id="minutes">00</div>
-                            <div class="countdown-label">MIN</div>
-                        </div>
-                        <div class="countdown-segment">
-                            <div class="countdown-value" id="seconds">00</div>
-                            <div class="countdown-label">SEG</div>
-                        </div>
-                    </div>
-                </div>
-            </header>
-            
-            <main>
-                <section class="promo-card">
-                    <p>
-                        Pronto celebraremos nuestro <span class="highlight">primer año</span> como plataforma oficial en redes sociales y web. 
-                        Aunque nuestra celebración oficial será a <span class="accent-text">finales de noviembre</span>, queremos compartir 
-                        nuestra alegría con esta <span class="highlight">oferta anticipada</span>.
-                    </p>
-                    
-                    <p>
-                        Durante este periodo especial, ofrecemos un <span class="highlight">descuento del 50%</span> en todos nuestros planes CHP 
-                        para aquellos usuarios que deseen establecer su presencia digital con una página web profesional.
-                    </p>
-                    
-                    <p>
-                        <span class="accent-text">¡Atención!</span> Esta promoción es por tiempo limitado y <span class="highlight">solo estará disponible hasta el 15 de julio</span>. 
-                        No pierdas esta oportunidad única de obtener servicios premium a mitad de precio.
-                    </p>
-                </section>
-                
-                <section class="benefits-grid">
-                    <article class="benefit-card">
-                        <h3>50% OFF</h3>
-                        <p>El descuento se aplicara a todas las selecciones que elijas en el plazo de tiempo especificado.</p>
-                    </article>
-                </section>
-            </main>
-            
-            <div class="cta-container">
-                <button id="cta-button" class="cta-button">
-                    <span>
-                        ★OBTENER YA★
-                        <span class="icon">→</span>
-                    </span>
-                </button>
-            </div>
-        </div>
-
-        <div id="expired-message" class="expired-message">
-            <h1>¡La oferta ha finalizado!</h1>
-            <p>Lamentamos informar que esta promoción especial ha concluido.</p>
-            <button id="reload-button" class="cta-button">
-                Volver a cargar
-            </button>
-        </div>
+    <div id="notification" class="notification">
+        <button class="notification-close">&times;</button>
+        <h4>¡Promoción activa!</h4>
+        <p>Los primeros 50 envíos son gratuitos. ¡Participa ahora!</p>
     </div>
 
     <script>
-        // Manejo de la previsualización
-        document.getElementById('enter-site').addEventListener('click', function() {
-            document.getElementById('preview-overlay').style.display = 'none';
-            document.getElementById('main-content').style.display = 'block';
-            initializeApp();
-        });
-
-        // Función principal que se ejecuta después de aceptar la previsualización
-        function initializeApp() {
-            // Configuración del Service Worker para PWA
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js').catch(error => {
-                    console.log('Error al registrar ServiceWorker:', error);
-                });
-            }
-
-            // Clase mejorada para manejar el contador regresivo
-            class Countdown {
-                constructor(deadline, displayElements) {
-                    this.deadline = deadline;
-                    this.displayElements = displayElements;
-                    this.animationFrame = null;
-                    this.lastUpdate = 0;
-                    this.update = this.update.bind(this);
-                }
-                
-                start() {
-                    this.update();
-                    // Usar requestAnimationFrame para animaciones más suaves
-                    const animate = (timestamp) => {
-                        if (!this.lastUpdate || timestamp - this.lastUpdate >= 1000) {
-                            this.update();
-                            this.lastUpdate = timestamp;
-                        }
-                        this.animationFrame = requestAnimationFrame(animate);
-                    };
-                    this.animationFrame = requestAnimationFrame(animate);
-                }
-                
-                stop() {
-                    if (this.animationFrame) {
-                        cancelAnimationFrame(this.animationFrame);
-                    }
-                }
-                
-                update() {
-                    const now = new Date();
-                    const timeLeft = this.deadline - now;
-                    
-                    if (timeLeft <= 0) {
-                        this.displayExpired();
-                        this.stop();
-                        return;
-                    }
-                    
-                    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-                    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-                    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-                    
-                    // Actualizar cada elemento individualmente para mejor performance
-                    this.displayElements.days.textContent = days.toString().padStart(2, '0');
-                    this.displayElements.hours.textContent = hours.toString().padStart(2, '0');
-                    this.displayElements.minutes.textContent = minutes.toString().padStart(2, '0');
-                    this.displayElements.seconds.textContent = seconds.toString().padStart(2, '0');
-                    
-                    // Efecto de animación cuando quedan pocos segundos
-                    if (days === 0 && hours === 0 && minutes < 5) {
-                        this.displayElements.seconds.parentElement.style.animation = seconds % 2 === 0 
-                            ? 'pulse 0.5s ease-in-out' 
-                            : 'none';
-                    }
-                }
-                
-                displayExpired() {
-                    document.getElementById('main-content').style.display = 'none';
-                    document.getElementById('expired-message').style.display = 'flex';
-                }
-            }
-
-            // Fecha límite: 15 de julio del año actual a las 12:00 PM
-            const currentYear = new Date().getFullYear();
-            const deadline = new Date(`${currentYear}-07-15T12:00:00`);
+        // Elementos del DOM
+        const elements = {
+            notification: document.getElementById('notification'),
+            expiredMessage: document.getElementById('expired-message'),
+            whatsappBtn: document.getElementById('whatsapp-btn'),
+            tarifasBtn: document.getElementById('tarifas-btn'),
+            notificationClose: document.querySelector('.notification-close')
+        };
+        
+        // Inicializar la aplicación
+        function initApp() {
+            setupEventListeners();
             
-            // Elementos del contador
-            const displayElements = {
-                days: document.getElementById('days'),
-                hours: document.getElementById('hours'),
-                minutes: document.getElementById('minutes'),
-                seconds: document.getElementById('seconds')
-            };
-            
-            const countdown = new Countdown(deadline, displayElements);
-            
-            if (new Date() >= deadline) {
-                countdown.displayExpired();
-            } else {
-                countdown.start();
-            }
-            
-            // Botón de recarga
-            document.getElementById('reload-button')?.addEventListener('click', () => {
-                window.location.reload();
+            // Mostrar notificación inicial después de 5 segundos
+            setTimeout(() => {
+                showNotification('¡Promoción activa!', 'Los primeros 50 envíos son gratuitos. ¡Participa ahora!');
+            }, 5000);
+        }
+        
+        // Configurar event listeners
+        function setupEventListeners() {
+            elements.whatsappBtn.addEventListener('click', () => {
+                window.open('https://wa.me/5350369270', '_blank');
+                showNotification('Conexión iniciada', 'Serás redirigido a WhatsApp para completar el proceso.');
             });
             
-            // Botón CTA mejorado
-            const ctaButton = document.getElementById('cta-button');
-            if (ctaButton) {
-                ctaButton.addEventListener('click', async () => {
-                    if (new Date() >= deadline) {
-                        showAlert('La oferta ha finalizado', 'error');
-                        return;
-                    }
-                    
-                    // Animación de carga
-                    ctaButton.disabled = true;
-                    ctaButton.innerHTML = '<span>Procesando...</span>';
-                    
-                    try {
-                        // Solicitar permisos antes de redirigir
-                        await requestPermissions();
-                        
-                        // Efecto visual antes de redirigir
-                        ctaButton.style.transform = 'scale(0.95)';
-                        setTimeout(() => {
-                            window.location.href = 'https://cubabazaronline.github.io/CHP/';
-                        }, 300);
-                    } catch (error) {
-                        console.error('Error al solicitar permisos:', error);
-                        ctaButton.disabled = false;
-                        ctaButton.innerHTML = '<span>★OBTENER YA★<span class="icon">→</span></span>';
-                        showAlert('Hubo un error al procesar tu solicitud', 'error');
-                    }
-                });
-            }
+            elements.tarifasBtn.addEventListener('click', () => {
+                window.location.href = 'https://tcubitapay.com/tarifas';
+            });
             
-            // Función para mostrar alertas
-            function showAlert(message, type = 'info') {
-                const alert = document.createElement('div');
-                alert.textContent = message;
-                alert.style.position = 'fixed';
-                alert.style.bottom = '20px';
-                alert.style.left = '50%';
-                alert.style.transform = 'translateX(-50%)';
-                alert.style.padding = '1rem 2rem';
-                alert.style.borderRadius = '50px';
-                alert.style.backgroundColor = type === 'error' ? 'var(--error)' : 'var(--success)';
-                alert.style.color = 'white';
-                alert.style.zIndex = '1000';
-                alert.style.boxShadow = '0 4px 12px rgba(0,0,0,0.2)';
-                alert.style.animation = 'fadeIn 0.3s ease-out';
-                
-                document.body.appendChild(alert);
-                
-                setTimeout(() => {
-                    alert.style.animation = 'fadeOut 0.3s ease-out';
-                    setTimeout(() => {
-                        document.body.removeChild(alert);
-                    }, 300);
-                }, 3000);
-            }
+            elements.notificationClose.addEventListener('click', () => {
+                hideNotification();
+            });
             
-            // Solicitar permisos necesarios
-            async function requestPermissions() {
-                try {
-                    await Promise.all([
-                        requestNotificationPermission(),
-                        requestGeolocationPermission(),
-                        requestStoragePermission()
-                    ]);
-                } catch (error) {
-                    console.error('Error en permisos:', error);
-                    // Continuar aunque falle algún permiso
+            // Cerrar notificación automáticamente después de 5 segundos
+            elements.notification.addEventListener('transitionend', () => {
+                if (elements.notification.classList.contains('show')) {
+                    setTimeout(hideNotification, 5000);
                 }
-            }
-            
-            // Funciones individuales para permisos
-            async function requestNotificationPermission() {
-                if ('Notification' in window && Notification.permission !== 'denied') {
-                    return Notification.requestPermission();
-                }
-                return Promise.resolve();
-            }
-            
-            function requestGeolocationPermission() {
-                return new Promise(resolve => {
-                    if ('geolocation' in navigator) {
-                        navigator.geolocation.getCurrentPosition(
-                            () => resolve(),
-                            () => resolve(),
-                            { enableHighAccuracy: true, timeout: 5000 }
-                        );
-                    } else {
-                        resolve();
-                    }
-                });
-            }
-            
-            async function requestStoragePermission() {
-                if ('storage' in navigator && 'persist' in navigator.storage) {
-                    try {
-                        return await navigator.storage.persist();
-                    } catch (error) {
-                        console.error('Error en persistencia de almacenamiento:', error);
-                        return Promise.resolve();
-                    }
-                }
-                return Promise.resolve();
-            }
+            });
         }
+        
+        // Mostrar notificación en la página
+        function showNotification(title, message) {
+            const notification = elements.notification;
+            notification.querySelector('h4').textContent = title;
+            notification.querySelector('p').textContent = message;
+            
+            notification.classList.add('show');
+        }
+        
+        // Ocultar notificación
+        function hideNotification() {
+            elements.notification.classList.remove('show');
+        }
+        
+        // Iniciar la aplicación cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', initApp);
     </script>
 </body>
 </html>
